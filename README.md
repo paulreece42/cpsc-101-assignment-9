@@ -3,7 +3,6 @@
 LCC CPSC-101 Assignment 9
 
 
-Main file at: [anaconda_projects/defd7ff8-d3df-4665-b358-b59b5cf8ed27/main.ipynb](anaconda_projects/defd7ff8-d3df-4665-b358-b59b5cf8ed27/main.ipynb)
 
 Instructions:
 
