@@ -12,3 +12,13 @@ Instructions:
     2. parse_input(input) - This function determines if the string input represents an integer or a hex (hex begin with "0x").
     3. convert_to_binary(type) - This function converts the input to binary, taking into account whether the type is decimal or hexadecimal.
 3. Students MUST have at least 15 commits that show iteration as one builds up the functions.
+
+Notes:
+
+Debug output can be turned on with -DDEBUG compiler flag, for example:
+
+    clang++ -DDEBUG main.cpp
+    $ ./a.out
+    Enter a number in hex or decimal: 0x42
+    in convert_to_binary function, myinput is: 0x42 and base is: 16
+    coming soon!

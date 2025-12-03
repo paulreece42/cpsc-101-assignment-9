@@ -3,6 +3,7 @@
 using namespace std;
 
 
+
 int parse_input(string myinput) {
     // parse input, return number base based off formatting
     // currently only does base-10 / decimal and base-16 / hex
@@ -19,8 +20,15 @@ int parse_input(string myinput) {
 string convert_to_binary(string myinput, int base) {
     // converts from base-x to binary, returned as string output
     string myoutput;
-    myoutput = "in convert_to_binary function, myinput is: " + myinput + " and base is: " + to_string(base);
-    return myoutput;
+    #ifdef DEBUG
+       cout << "in convert_to_binary function, myinput is: " << myinput << " and base is: " << base << endl;
+    #endif
+    if (base == 16) {
+        return "coming soon!";
+    }
+    else {
+        return myoutput;
+    }
 }
 
 int main() {
