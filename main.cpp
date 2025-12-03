@@ -41,13 +41,6 @@ string convert_to_binary(string myinput, int base) {
             remainder = myint % 2;
             myint = (int)myint / 2;
         }
-
-/* python example removeme
-        while not ((myint == 0) and (remainder == 0)):
-            mylist.append(remainder)
-            myint, remainder = divmod(myint, 2)
-        mylist.reverse() # reverse the list
-*/
         return myoutput;
     }
 }
