@@ -7,6 +7,9 @@ using namespace std;
 int parse_input(string myinput) {
     // parse input, return number base based off formatting
     // currently only does base-10 / decimal and base-16 / hex
+    #ifdef DEBUG
+        cout << "in parse_input function, myinput is: " << myinput << endl;
+    #endif
     regex pattern("^0x");
     smatch match;
     if (regex_search(myinput, match, pattern)) {
@@ -27,6 +30,24 @@ string convert_to_binary(string myinput, int base) {
         return "coming soon!";
     }
     else {
+        int int_myinput = stoi(myinput);
+        int myint = (int)int_myinput / 2;
+        int remainder = int_myinput % 2;
+        #ifdef DEBUG
+            cout << "myint: " << myint << " remainder: " << remainder << endl;
+        #endif
+        while (myint > 0 || remainder > 0) {
+            myoutput = to_string(remainder) + myoutput;
+            remainder = myint % 2;
+            myint = (int)myint / 2;
+        }
+
+/* python example removeme
+        while not ((myint == 0) and (remainder == 0)):
+            mylist.append(remainder)
+            myint, remainder = divmod(myint, 2)
+        mylist.reverse() # reverse the list
+*/
         return myoutput;
     }
 }
