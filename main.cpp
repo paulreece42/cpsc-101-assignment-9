@@ -72,10 +72,19 @@ string convert_to_binary(string myinput, int base) {
             *  Yep. We're calling our function, from within the same function, 
             * this is called a "recursive function"
             */
-            mybin = convert_to_binary(to_string(myint), 10)
-            // now we have the integer representation of the binary, but for 2, that's 10
-            // I want to zero-pad it with leading zeros, because it makes more sense that way, with Hex
-            myoutput += to_string(format("{:04} ", mybin));
+            mybin = stoi(convert_to_binary(to_string(myint), 10));
+            /* now we have the integer representation of the binary, but for 2, that's 10
+            * I want to zero-pad it with leading zeros, because it makes more sense that way, with Hex
+            *
+            * however, std::format seems to only be supported on c++20 and up, and on my Mac with
+            * miniconda, clang seems to default to c++17 (but supports c++20)
+            * I can do it with setw and stuff but let's just settle for simpler output, on older versions
+            */
+            #if __cplusplus >= 202002L
+                myoutput += format("{:04} ", mybin);
+            # else
+                myoutput += to_string(mybin) + " ";
+            # endif
         }
         return myoutput;
     }

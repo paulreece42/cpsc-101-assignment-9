@@ -15,9 +15,18 @@ Instructions:
 
 Notes:
 
+Uses c++20, the 2020 version of C++, for the std::format() function
+
+With miniconda, this should be no problem, just add `-std=c++20` to compile options, like so:
+
+    clang++ -std=c++20 main.cpp -o programName
+    g++ -std=c++20 main.cpp -o programName
+
+It just won't zero-pad the hex values without that though, no big deal
+
 Debug output can be turned on with -DDEBUG compiler flag, for example:
 
-    clang++ -DDEBUG main.cpp
+    clang++ -std=c++20 -DDEBUG main.cpp
     $ ./a.out
     Enter a number in hex or decimal: 0x42
     in convert_to_binary function, myinput is: 0x42 and base is: 16
