@@ -27,7 +27,8 @@ string convert_to_binary(string myinput, int base) {
        cout << "in convert_to_binary function, myinput is: " << myinput << " and base is: " << base << endl;
     #endif
     if (base == 16) {
-        int myint; // have to declare the variable here, outside scope of the for loop
+        int myint; // have to declare the variables here, outside scope of the for loop
+        int mybin;
         // first, remove the leading 0x
         myinput = myinput.substr(2);
         // now loop over chars
@@ -71,7 +72,10 @@ string convert_to_binary(string myinput, int base) {
             *  Yep. We're calling our function, from within the same function, 
             * this is called a "recursive function"
             */
-            myoutput += convert_to_binary(to_string(myint), 10) + " ";
+            mybin = convert_to_binary(to_string(myint), 10)
+            // now we have the integer representation of the binary, but for 2, that's 10
+            // I want to zero-pad it with leading zeros, because it makes more sense that way, with Hex
+            myoutput += to_string(format("{:04} ", mybin));
         }
         return myoutput;
     }
