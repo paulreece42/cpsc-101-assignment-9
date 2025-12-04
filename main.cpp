@@ -27,7 +27,53 @@ string convert_to_binary(string myinput, int base) {
        cout << "in convert_to_binary function, myinput is: " << myinput << " and base is: " << base << endl;
     #endif
     if (base == 16) {
-        return "coming soon!";
+        int myint; // have to declare the variable here, outside scope of the for loop
+        // first, remove the leading 0x
+        myinput = myinput.substr(2);
+        // now loop over chars
+        for (char c : myinput) {
+            /** These "char" character objects are actually integers, in disguise!
+             *  so to save some space, we can "map" A-F to the integers 10-15 
+             *  but first, force uppercase for simplification of ASCII-mapping
+             *  because A = 65 in ASCII, but a = 97
+             *  
+             *  This will make a lot more sense if you Google "ASCII chart", probably 
+             */
+            c = toupper(c);
+            if ( c > 47 && c < 58 ) { // 48 is 0 in ASCII, 57 is 9. So, "if 0-9"
+                /** we could just cast this from a char back to a string and use
+                *  stoi() or string-to-integer, since there's already a function
+                *  to cast ASCII numbers 0-9 string to integer
+                * but since we're already messing with ASCII, I'll just do it the same way
+                */
+                myint = (int)c - 48;
+                
+            }
+            else if ( c > 64 && c < 71 ) { // 65=A, 70=F. So, "if A-F"
+                // here's where we do the trick, subtract 55 from the ASCII value
+                // of A-F, mapping 65-70 to 10-15
+                myint = (int)c - 55;
+            }
+            else { // invalid hex, throw an error and die
+                cout << "Flagrant System Error: invalid hex entered!" << endl;
+                cout << "Program over = very yes :-(" << endl;
+                /** exit code > 0 means the program exited abnormally, i.e. errored out
+                *   this is important for shell scripts that often check the exit code or
+                *   return value of a program, to know if the program ran successfully or not
+                */
+                exit(1);
+            }
+            // now myint is equal to a decimal integer 0-15
+            #ifdef DEBUG
+                cout << myint << endl;
+            #endif
+            /* I already wrote the code to do decimal-to-binary, no need to repeat it!
+            *  Yep. We're calling our function, from within the same function, 
+            * this is called a "recursive function"
+            */
+            myoutput += convert_to_binary(to_string(myint), 10) + " ";
+        }
+        return myoutput;
     }
     else {
         int int_myinput = stoi(myinput);
