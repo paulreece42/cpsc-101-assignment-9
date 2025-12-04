@@ -15,16 +15,13 @@ Instructions:
 
 Notes:
 
-Uses c++20, the 2020 version of C++, for the std::format() function
+Can build using g++ / clang++, or cmake
 
-With miniconda, this should be no problem, just add `-std=c++20` to compile options, like so:
+    clang++ main.cpp -o programName
+    g++ main.cpp -o programName
 
-    clang++ -std=c++20 main.cpp -o programName
-    g++ -std=c++20 main.cpp -o programName
 
-It just won't zero-pad the hex values without that though, no big deal
-
-OR CMake:
+cmake:
 
 	bash-3.2$ mkdir build
 	bash-3.2$ cd build/
