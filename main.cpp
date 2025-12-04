@@ -1,5 +1,7 @@
 #include <iostream>
-#include <regex> // holy cow guys! C++11 got regex! Finally! :-D
+#include <regex> 
+#include <iomanip>
+#include <sstream>
 using namespace std;
 
 
@@ -29,6 +31,7 @@ string convert_to_binary(string myinput, int base) {
     if (base == 16) {
         int myint; // have to declare the variables here, outside scope of the for loop
         int mybin;
+        ostringstream oss;
         // first, remove the leading 0x
         myinput = myinput.substr(2);
         // now loop over chars
@@ -76,17 +79,12 @@ string convert_to_binary(string myinput, int base) {
             /* now we have the integer representation of the binary, but for 2, that's 10
             * I want to zero-pad it with leading zeros, because it makes more sense that way, with Hex
             *
-            * however, std::format seems to only be supported on c++20 and up, and on my Mac with
-            * miniconda, clang seems to default to c++17 (but supports c++20)
-            * I can do it with setw and stuff but let's just settle for simpler output, on older versions
+            * c++20 allegedly has the format() function, which worked on my Mac, but not on a Linux VM
+            * this lead me down a whole rabbit hole, doing it the "old way" instead
             */
-            #if __cplusplus >= 202002L
-                myoutput += format("{:04} ", mybin);
-            # else
-                myoutput += to_string(mybin) + " ";
-            # endif
+            oss << setw(4) << setfill('0') << mybin << ' ';
         }
-        return myoutput;
+        return oss.str();
     }
     else {
         int int_myinput = stoi(myinput);
