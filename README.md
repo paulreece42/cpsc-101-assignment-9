@@ -24,6 +24,33 @@ With miniconda, this should be no problem, just add `-std=c++20` to compile opti
 
 It just won't zero-pad the hex values without that though, no big deal
 
+OR CMake:
+
+	bash-3.2$ mkdir build
+	bash-3.2$ cd build/
+	bash-3.2$ cmake ..
+	-- The CXX compiler identification is AppleClang 17.0.0.17000404
+	-- Detecting CXX compiler ABI info
+	-- Detecting CXX compiler ABI info - done
+	-- Check for working CXX compiler: /usr/bin/c++ - skipped
+	-- Detecting CXX compile features
+	-- Detecting CXX compile features - done
+	-- Configuring done (0.4s)
+	-- Generating done (0.0s)
+	-- Build files have been written to: /Users/preece/CPP_CPSC_101/build
+	bash-3.2$ make
+	[ 50%] Building CXX object CMakeFiles/cpsc-101-assignment-9.dir/main.cpp.o
+	[100%] Linking CXX executable cpsc-101-assignment-9
+	[100%] Built target cpsc-101-assignment-9
+	bash-3.2$ ./cpsc-101-assignment-9
+	Enter a number in hex or decimal: 0x42
+	0100 0010
+	bash-3.2$ ./cpsc-101-assignment-9
+	Enter a number in hex or decimal: 0xFF
+	1111 1111
+	bash-3.2$
+
+
 Debug output can be turned on with -DDEBUG compiler flag, for example:
 
     clang++ -std=c++20 -DDEBUG main.cpp
